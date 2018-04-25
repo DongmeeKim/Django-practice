@@ -1,8 +1,7 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>선거 후보</title>
+  <title>{{dormitory}}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -11,24 +10,35 @@
 </head>
 <body>
 <div class="container">
+<h1>{{dormitory}}</h1>
+<br>
+{% if poll %}
     <table class="table table-striped">
         <thead>
         <tr>
             <td><B>이름</B></td>
             <td><B>성별</B></td>
             <td><B>기숙사</B></td>
-            <td><B>소개</B></td>
+            <td><B>지지하기</B></td>
         </tr>
         </thead>
         <tbody>
         {% for character in characters %}
         <tr>
-            <td>{{ character.name }}</td>
-            <td>{{ character.gender }}</td>
-            <td><a href="dormitories/{{character.dormitory}}/">{{ character.dormitory }}</a></td>
-            <td>{{ character.description }}</td>
+            <td> {{ character.name }} </td>
+            <td> {{ character.gender }} </td>
+            <td> {{ character.dormitory}} </td>
+            <td>
+                <form action = "#" method="post">
+                    <button name="choice" value="#">선택</button>
+                </form>
+            </td>
         </tr>
-        {% endfor %}
-        <tbody>
+        {% endfor %}      
+        </tbody>
     </table>
+{% else %}
+불의 잔 참가자 투표가 마무리되었습니다.
+{% endif %}
+</div>
 </body>
