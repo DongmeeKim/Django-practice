@@ -29,8 +29,9 @@
             <td> {{ character.gender }} </td>
             <td> {{ character.dormitory}} </td>
             <td>
-                <form action = "#" method="post">
-                    <button name="choice" value="#">선택</button>
+                <form action = "/polls/{{poll.id}}/" method="post">
+                {% csrf_token %}
+                    <button name="choice" value="{{character.id}}">선택</button>
                 </form>
             </td>
         </tr>
@@ -38,7 +39,7 @@
         </tbody>
     </table>
 {% else %}
-불의 잔 참가자 투표가 마무리되었습니다.
+트리위저드 참가자 투표가 마무리되었습니다.
 {% endif %}
 </div>
 </body>

@@ -22,3 +22,16 @@ def dormitories(request, dormitory):
     context = {'characters':characters, 'dormitory':dormitory, 'poll':poll}
     return render(request, 'election/dormitory.html', context)
 
+def polls(request, poll_id):
+    poll = Poll.objects.get(pk=poll_id)
+    selection = request.POST['choice']
+    try:
+        choice = Choice.objects.get(poll_id = poll.id, character_id = selection)
+        choice.votes += 1
+        choice.save()
+    except:
+        choice = Choice(poll_id = poll_id, character_id = selection, votes =1)
+        choice.save()
+
+
+    return HttpResponse("finish")

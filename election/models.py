@@ -8,6 +8,7 @@ class Character(models.Model):
     dormitory = models.CharField(max_length = 15)
     description = models.TextField()
 
+
     def __str__(self):
         return self.name
 
@@ -23,4 +24,7 @@ class Choice(models.Model):
     poll = models.ForeignKey(Poll)
     character = models.ForeignKey(Character)
     votes = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.character.name
 
